@@ -1,0 +1,34 @@
+{
+  "name": "tardy",
+  "version": "1.0.0",
+  "description": "A web app that tells you what time to tell your friends to meet at, so you won't have to wait!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxLinCode/tardy-HackIllinois-2017.git"
+  },
+  "author": "BobaBuddies",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaxLinCode/tardy-HackIllinois-2017/issues"
+  },
+  "homepage": "https://github.com/MaxLinCode/tardy-HackIllinois-2017#readme",
+  "dependencies": {
+    "angular": "^1.6.2",
+    "angular-route": "^1.6.2",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "firebase": "^3.6.10",
+    "ts-loader": "^2.0.1",
+    "typescript": "^2.2.1"
+  },
+  "devDependencies": {
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  }
+}
