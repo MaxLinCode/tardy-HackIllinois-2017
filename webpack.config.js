@@ -1,7 +1,9 @@
+const webpack = require("webpack");
+
 module.exports = {
     entry: __dirname + '/src/app.js',
     output: {
-        path: __dirname + '/src',
+        path: __dirname + '/www',
         filename: 'bundle.js'
     },
     module: {
