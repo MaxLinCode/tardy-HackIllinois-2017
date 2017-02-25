@@ -6,7 +6,7 @@ var router = express.Router();
 
 var serviceAccount = require("./serviceAccountKey.json");
 
-app.use(express.static(path.join(__dirname, 'wwww')));
+app.use(express.static(path.join(__dirname, 'www')));
 
 app.get('*', function(req,res){
 	res.sendfile('./www/index.html');
