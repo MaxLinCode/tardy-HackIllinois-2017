@@ -14,10 +14,10 @@ app.get('*', function(req,res){
 
 var server = app.listen(8080, function() {
 	console.log('Server running at http://localhost:8080');
-}
+});
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://<DATABASE_NAME>.firebaseio.com"
+  databaseURL: "https://tardy-ccd34.firebaseio.com"
 });
 
