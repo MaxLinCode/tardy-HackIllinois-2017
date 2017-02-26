@@ -1,5 +1,6 @@
 import React from 'react'
-var poop =  "Poop";
+import firebase from 'firebase'
+
 
 class ScheduleForm extends React.Component {
     constructor(props) {
