@@ -17,7 +17,6 @@ class NetworkForm extends React.Component {
           });
           arr.forEach(function() {
             <ul>
-              
             </ul>
           });
         });
@@ -34,7 +33,7 @@ class NetworkForm extends React.Component {
       });
     }
 
-  
+
 
     render() {
         return (
