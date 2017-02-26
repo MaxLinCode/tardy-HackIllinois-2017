@@ -23,7 +23,7 @@ class LoginForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         login(this.state.email, this.state.password);
-        browserHistory.push('/schedule')
+        browserHistory.push('/dashboard')
     }
 
     render() {

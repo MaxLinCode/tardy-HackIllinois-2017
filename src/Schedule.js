@@ -5,6 +5,7 @@ import firebase from 'firebase'
 class ScheduleForm extends React.Component {
     constructor(props) {
         super(props);
+        console.log(global_user.uid)
         this.state = {
           full_name: '',
           expected_time: 
@@ -18,7 +19,7 @@ class ScheduleForm extends React.Component {
             {
               hours: '',
               minutes: '',
-              isPM: 'name',
+              isPM: 'AM',
               seconds: ''
             },
         };

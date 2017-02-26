@@ -65,6 +65,7 @@ export default class App extends React.Component {
             <IndexRoute component={Login} />
             <Route path="/about" component={About} />
             <Route path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
             <Route path="/schedule" component={Schedule} onEnter={this.requireAuth} />
             <Route path="/dashboard" component={Dashboard} onEnter={this.requireAuth} />
             <Route path="/friend" component={Friend} onEnter={this.requireAuth} />

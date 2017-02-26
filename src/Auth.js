@@ -1,4 +1,5 @@
 import { ref, firebaseAuth } from './config/fireConstants'
+import { browserHistory } from 'react-router'
 
 export function auth (email, pw) {
   return firebaseAuth().createUserWithEmailAndPassword(email, pw)
@@ -29,6 +30,7 @@ export function login (email, pw) {
 }
 
 export function saveUser (user) {
+  browserHistory.push('/dashboard')
   return ref.child(`users/${user.uid}/info`)
     .set({
       email: user.email,
