@@ -57,9 +57,9 @@ class ScheduleForm extends React.Component {
         const name = target.name;
         if (name == 'expected_time') {
           this.setState
-        } 
+        }
         else if (name == 'arrival_time') {
-          
+
         } else {
           this.setState({
               [name]: target.value
@@ -71,6 +71,7 @@ class ScheduleForm extends React.Component {
         alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + '\nArrival Time: ');
         event.preventDefault();
     }
+
 
     render() {
         return (

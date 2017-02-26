@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {browserHistory} from 'react-router'
 import { login } from './Auth'
 //var database = firebase.database();
 
@@ -24,7 +24,15 @@ class DashboardForm extends React.Component {
             [name]: target.value
         });
     }
-
+    handleSchedule() {
+      browserHistory.push('/schedule');
+    }
+    handleFriend() {
+      browserHistory.push('/friend');
+    }
+    handleNetwork() {
+      browserHistory.push('/network');
+    }
     handleSubmit(event) {
         event.preventDefault();
         login(this.state.email, this.state.password);
@@ -32,25 +40,18 @@ class DashboardForm extends React.Component {
 
     render() {
         return (
-        <div>
-          <h1>Sign Up with Tardy</h1>
           <div className='sign-in'>
-          <form onSubmit={this.handleSubmit} >
-            <label><p>Full Name</p></label>
-            <input className='input' type="text" name="full_name" value={this.state.full_name} onChange={this.handleChange} />
-
-              <label><p>Email</p></label>
-              <input className='input' type="text" name="email" value={this.state.email} onChange={this.handleChange} />
-              <br />
-              <label><p>Phone Number</p></label>
-              <input className='input' maxLength='10' type="text" name="phone" value={this.state.phone} onChange={this.handleChange} />
-              <br />
-              <label><p>Password</p></label>
-              <input className='input' type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-          <input className='submit btn' type="submit" value="Submit" />
-          </form>
+            <br/>
+            <div className='submit btn' onClick={this.handleFriend}><p>Add a Friend</p>
+            </div>
+            <br/>
+            <div className='submit btn' onClick={this.handleSchedule}><p>Schedule a Meetup</p>
+            </div>
+            <br/>
+            <div className='submit btn' onClick={this.handleNetwork}><p>See Network</p>
+            </div>
+            <br/>
           </div>
-        </div>
         );
     }
 }
