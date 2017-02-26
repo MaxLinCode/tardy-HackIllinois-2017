@@ -9,14 +9,14 @@ class ScheduleForm extends React.Component {
         super(props);
         this.state = {
           full_name: '',
-          expected_time: 
+          expected_time:
             {
               hours: '',
               minutes: '',
               isPM: 'AM',
               seconds: '',
             },
-          arrival_time: 
+          arrival_time:
             {
               hours: '',
               minutes: '',
@@ -97,7 +97,7 @@ class ScheduleForm extends React.Component {
     }
 
     dispSchedule(timeToSchedule) {
-      
+
     }
 
     handleSubmit(event) {
@@ -105,6 +105,8 @@ class ScheduleForm extends React.Component {
         event.preventDefault();
         var user = firebase.auth().currentUser;
         var timeInSec = this.toSeconds(this.state.expected_time.hours,this.state.expected_time.minutes);
+        var event = document.getElementsByClassName('event');
+        event.setAt
         getEntry(user.uid, this.state.full_name).once('value').then((snapshot) => {
           var arr = snapshot.val();
           var timeToSchedule = rawToTime(Predict(arr,timeInSec));
@@ -113,6 +115,10 @@ class ScheduleForm extends React.Component {
         });
     }
 
+    handleEvent(event) {
+      event.preventDefault();
+      var user = firebase.auth().currentUser;
+    }
 
     render() {
         return (
@@ -136,12 +142,17 @@ class ScheduleForm extends React.Component {
             </div>
             </div>
 
-            
-        <input className='submit btn' type="submit" value="Submit" />
+
+        <input className='submit btn' type="submit" value="Predict Time" />
         </form>
         </div>
         <br />
-        <h1>{this.state.scheduledTime}</h1>
+        <div className='sign-in event'>
+        <p>Notify your friend to arrive at {this.state.scheduledTime}</p>
+        <form onSubmit={this.handleEvent} >
+        <input className='event btn' type="submit" value="Notify Friend" />
+        </form>
+        </div>
         </div>
         );
     }
