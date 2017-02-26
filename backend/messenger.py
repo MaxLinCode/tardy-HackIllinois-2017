@@ -1,3 +1,4 @@
+import sys, json
 from loadData import rawToTime, getNumber, predict
 from twilio.rest import TwilioRestClient
 
@@ -18,7 +19,7 @@ def sendMessage(number, message_body):
          to="+1" + str(number),    # Replace with your phone number
          from_=twilioNum) # Replace with your Twilio number
 
-    print("Message Sent to: %d\nMessage Content: %s" % (number, message_body)) 
+    logMessage("Message Sent to: %d\nMessage Content: %s\n\n" % (number, message_body)) 
 
 def sendInvites(userId, target, time, place):
     d = {}
@@ -33,4 +34,24 @@ def sendInvites(userId, target, time, place):
     for key in d:
         sendMessage(d[key][0], d[key][1])
 
-sendInvites("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", predict("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", 43200), "Thomas M. Siebel Center for Computer Science")
+def logMessage(text):
+    f = open("out.log", 'a+')
+    f.write(text)
+    f.close()
+
+#sendInvites("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", predict("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", 43200), "Thomas M. Siebel Center for Computer Science")
+
+#Read data from stdin
+def read_in():
+    lines = sys.stdin.readlines()
+    #Since our input would only be having one line, parse our JSON data from that
+    return json.loads(lines[0])
+
+def main():
+    #get our data as an array from read_in()
+    lines = read_in()
+
+    print(lines)
+
+if __name__ == '__main__':
+	main()
