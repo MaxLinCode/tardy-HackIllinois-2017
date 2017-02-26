@@ -28,7 +28,7 @@ class FriendForm extends React.Component {
         });
     }
     writeUserData(userId, full_name, email, phone) {
-      console.log('userId = ' + firebase.auth().currentUser.uid;
+      console.log('userId = ' + firebase.auth().currentUser.uid);
       console.log('full_name = ' + this.state.full_name);
       firebase.database().ref('users/' + this.state.userId + '/' + this.state.full_name).set({
         name: full_name,

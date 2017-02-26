@@ -1,11 +1,12 @@
 import React from 'react'
 import firebase from 'firebase'
 
+import {Predict, rawToTime} from './PredictTime'
+import {getEntry} from './loadData'
 
 class ScheduleForm extends React.Component {
     constructor(props) {
         super(props);
-        console.log(global_user.uid)
         this.state = {
           full_name: '',
           expected_time: 
@@ -22,6 +23,7 @@ class ScheduleForm extends React.Component {
               isPM: 'AM',
               seconds: ''
             },
+            scheduledTime: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -38,6 +40,10 @@ class ScheduleForm extends React.Component {
       this.setState({
         [name.seconds]: total
       });
+    }
+
+    toSeconds(hours, minutes) {
+        return hours * 60 * 60 + minutes * 60;
     }
 
     handleChange(event) {
@@ -90,9 +96,21 @@ class ScheduleForm extends React.Component {
       }
     }
 
+    dispSchedule(timeToSchedule) {
+      
+    }
+
     handleSubmit(event) {
-        alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + ' ' + this.state.expected_time.minutes+ ' ' + this.state.expected_time.isPM + '\nArrival Time: ' + this.state.arrival_time.hours + ' ' + this.state.arrival_time.minutes + ' ' + this.state.arrival_time.isPM);
+        //alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + ' ' + this.state.expected_time.minutes+ ' ' + this.state.expected_time.isPM + '\nArrival Time: ' + this.state.arrival_time.hours + ' ' + this.state.arrival_time.minutes + ' ' + this.state.arrival_time.isPM);
         event.preventDefault();
+        var user = firebase.auth().currentUser;
+        var timeInSec = this.toSeconds(this.state.expected_time.hours,this.state.expected_time.minutes);
+        getEntry(user.uid, this.state.full_name).once('value').then((snapshot) => {
+          var arr = snapshot.val();
+          var timeToSchedule = rawToTime(Predict(arr,timeInSec));
+          console.log(timeToSchedule);
+          this.setState({scheduledTime: timeToSchedule})
+        });
     }
 
 
@@ -118,7 +136,22 @@ class ScheduleForm extends React.Component {
             </div>
             </div>
 
-            <label><p>Actual Arrival Time</p></label>
+            
+        <input className='submit btn' type="submit" value="Submit" />
+        </form>
+        </div>
+        <br />
+        <h1>{this.state.scheduledTime}</h1>
+        </div>
+        );
+    }
+}
+
+export default ScheduleForm;
+
+
+/*
+<label><p>Actual Arrival Time</p></label>
             <div className='time-capsule'>
             <input className='input time in' maxLength="2" name="arrival_time_hours" value={this.state.arrival_time.hours} onChange={this.handleChange}/>
             <p className='in'>&nbsp;:&nbsp;</p>
@@ -129,13 +162,4 @@ class ScheduleForm extends React.Component {
               <option className='in'>PM</option>
             </select>
             </div>
-            </div>
-        <input className='submit btn' type="submit" value="Submit" />
-        </form>
-        </div>
-        </div>
-        );
-    }
-}
-
-export default ScheduleForm;
+            </div>*/
