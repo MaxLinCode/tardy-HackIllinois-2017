@@ -1,13 +1,19 @@
-function sendInvites(userId, targets, time, place) {
-	var spawn = require('child_process').spawn,
-	    py    = spawn('python', ['messenger.py']),
-	    data = [userId, targets, time, place],
-	    dataString = '';
-
-	py.stdout.on('end', function(){
+function sendInvites(userId, target, time, place) {
+	var PythonShell = require('python-shell');
+	
+	var options = {
+	  mode: 'text',
+	  pythonPath: '/usr/bin/python3.4',
+	  pythonOptions: [],
+	  scriptPath: './',
+	  args: [userId, target, time, place]
+	};
+	
+	PythonShell.run('messenger.py', options, function (err, results) {
+	  if (err) throw err;
+	  // results is an array consisting of messages collected during execution
+	  console.log('results: %j', results);
 	});
-	py.stdin.write(JSON.stringify(data));
-	py.stdin.end();
-}
 
-sendInvites("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice",  43200, "Thomas M. Siebel Center for Computer Science");
+}
+sendInvites("PySYUaC1daQ7lezQ9HhvfV5Xdv73", "Audrey", 43200, "Thomas M. Siebel Center for Computer Science")

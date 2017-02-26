@@ -21,8 +21,11 @@ def getEntry(userId, target):
 
 def getNumber(userId, target):
     uname = db.child('users/' + userId).child("name").get().val()[0]
+    print(uname)
     tname = db.child('users/' + userId).child(target).child("name").get().val()[0]
+    print(tname)
     tnum = db.child('users/' + userId).child(target).child("number").get().val()[0]
+    print(tnum)
     return [uname, tname, tnum]
 
 def predict(userId, target, expected):
@@ -45,6 +48,14 @@ def predict(userId, target, expected):
     print(avg)
     return expected - avg
 
+def rawToTime(rawval):
+	intval = int(rawval)
+	seconds = intval % 60
+	intval = intval // 60
+	minutes = intval % 60
+	intval = intval // 60
+	hours = intval % 24
+	return ("%02d:%02d" % (hours, minutes))
 
 def roundFifteen(rawval):
     intval = int(rawval) // 60
@@ -59,4 +70,3 @@ def roundFifteen(rawval):
 #Test
 #addEntry("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", "68400", "68400")
 
-print(predict('kijZjJJ5ozPZxfeHYfjh3zd3TUh1', "Janice", 35000))

@@ -25,11 +25,10 @@ def sendInvites(userId, target, time, place):
     d = {}
     time = rawToTime(time)
     userName = ""
-    for x in target:
-        arr = getNumber(userId, target)
-        if userName == "":
-            userName = arr[0];
-        d[arr[1]] = [arr[2], formatMessage(userName, arr[1], time, place)]
+    arr = getNumber(userId, target)
+    if userName == "":
+        userName = arr[0];
+    d[arr[1]] = [arr[2], formatMessage(userName, arr[1], time, place)]
 
     for key in d:
         sendMessage(d[key][0], d[key][1])
@@ -39,19 +38,8 @@ def logMessage(text):
     f.write(text)
     f.close()
 
-#sendInvites("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", predict("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", 43200), "Thomas M. Siebel Center for Computer Science")
+#sendInvites("PySYUaC1daQ7lezQ9HhvfV5Xdv73", "Janice Huang", predict("PySYUaC1daQ7lezQ9HhvfV5Xdv73", "Janice Huang", 43200), "Thomas M. Siebel Center for Computer Science")
+def main(argv):
+	sendInvites(argv[0], argv[1], argv[2], argv[3])
 
-#Read data from stdin
-def read_in():
-    lines = sys.stdin.readlines()
-    #Since our input would only be having one line, parse our JSON data from that
-    return json.loads(lines[0])
-
-def main():
-    #get our data as an array from read_in()
-    lines = read_in()
-
-    print(lines)
-
-if __name__ == '__main__':
-	main()
+main(sys.argv[1:])
