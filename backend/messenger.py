@@ -8,19 +8,19 @@ auth_tok = "ad56643ba58e9763f22bcbcbf8eb96b8"
 def formatMessage(userName, targetName, time, place):
     return "Hello %s, %s would like to meet at %s at %s." % (targetName.title(), userName.title(), place.title(), time)
 
-def sendMessage(number, message):
+def sendMessage(number, message_body):
     account_sid = acc_sid # Your Account SID from www.twilio.com/console
     auth_token  = auth_tok  # Your Auth Token from www.twilio.com/console
 
     client = TwilioRestClient(account_sid, auth_token)
 
-    message = client.messages.create(body=message,
+    message = client.messages.create(body=message_body,
          to="+1" + str(number),    # Replace with your phone number
          from_=twilioNum) # Replace with your Twilio number
 
-    print("Message Sent to: %d\nMessage Content: %s" % (number, message)) 
+    print("Message Sent to: %d\nMessage Content: %s" % (number, message_body)) 
 
-def getInfo(userId, target, time, place):
+def sendInvites(userId, target, time, place):
     d = {}
     time = rawToTime(time)
     userName = ""
@@ -33,4 +33,4 @@ def getInfo(userId, target, time, place):
     for key in d:
         sendMessage(d[key][0], d[key][1])
 
-getInfo("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", predict("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", 43200), "Thomas M. Siebel Center for Computer Science")
+sendInvites("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", predict("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", 43200), "Thomas M. Siebel Center for Computer Science")
