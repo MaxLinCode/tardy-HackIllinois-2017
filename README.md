@@ -1,6 +1,6 @@
 # tardy
 
-Web App to keep friends on time!
+Web App to stop your friends from being late to meetups all the time!
   * Add data about events planned with friends.
   * Next event, tell your friend an earlier meetup time.
   * App uses statistics to tell you time suggested.
@@ -21,7 +21,7 @@ Web App to keep friends on time!
 ## OTHER SOURCES OF DOCUMENTATION
 
 ## Contributor Guide
-See how you can ontribute [here](https://github.com/MaxLinCode/tardy-HackIllinois-2017/blob/master/Contribute.md)
+See how you can contribute [here](https://github.com/MaxLinCode/tardy-HackIllinois-2017/blob/master/Contribute.md)
 
 ## License 
 MIT License
