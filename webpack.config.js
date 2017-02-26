@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 
 module.exports = {
-    entry: __dirname + '/src/app.js',
+    entry: __dirname + '/src/App.js',
     output: {
         path: __dirname + '/www',
         filename: 'bundle.js'
@@ -9,14 +9,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/, 
+                test: /\.js(x?)$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
-            },
-            {
-                test: /\.ts(x?)$/,
-                exclude: /node_modules/,
-                use: 'ts-loader'
+                use: 'babel-loader'
             }
         ]
     },

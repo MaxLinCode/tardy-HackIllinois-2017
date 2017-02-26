@@ -1,6 +1,12 @@
-import angular from 'angular';   
-import 'angular-route';
+import React from 'react';   
+import ReactDOM from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router';
 import * as firebase from "firebase";
+
+import Main from './Main'
+import NotFound from './NotFound'
+import About from './About'
+import Login from './Login' 
 
 // Initialize Firebase
 var config = {
@@ -12,21 +18,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
-class MyCtrl {
-    constructor() {
-        this.info = "Default text";
-    }
-}
-
-var app = angular.module("myApp", ["ngRoute"]);
-app.config(function($routeProvider) {
-        $routeProvider
-            .when("/", {
-                templateUrl: "./home.html"
-            })
-            .otherwise({
-                templateUrl: "./404.html"
-            })
-    })
-    .controller("MyCtrl", MyCtrl);
+ReactDOM.render((
+    <Router history={hashHistory}>
+      <Route path="/" component={Main}>
+        <Route path="/about" component={About}/>
+        <Route path="/login" component={Login}/>
+      </Route>
+      <Route path="*" component={NotFound}/>
+    </Router>
+), document.getElementById('app'));
