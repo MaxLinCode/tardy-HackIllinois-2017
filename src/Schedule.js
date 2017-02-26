@@ -18,7 +18,7 @@ class ScheduleForm extends React.Component {
             {
               hours: '',
               minutes: '',
-              isPM: 'name',
+              isPM: 'AM',
               seconds: ''
             },
         };
