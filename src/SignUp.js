@@ -1,7 +1,7 @@
 import React from 'react'
 import firebase from 'firebase'
 
-import { login } from './Auth'
+import { auth } from './Auth'
 
 class SignUpForm extends React.Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class SignUpForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        login(this.state.email, this.state.password);
+        auth(this.state.email, this.state.password);
     }
     writeUserData(userId, full_name) {
       firebase.database().ref('users/' + userId).set({
