@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from 'firebase'
-
+import {sendInvites} from '../backend/messenger.js'
 import {Predict, rawToTime} from './PredictTime'
 import {getEntry} from './loadData'
 
@@ -106,7 +106,6 @@ class ScheduleForm extends React.Component {
         var user = firebase.auth().currentUser;
         var timeInSec = this.toSeconds(this.state.expected_time.hours,this.state.expected_time.minutes);
         var event = document.getElementsByClassName('event');
-        event.setAt
         getEntry(user.uid, this.state.full_name).once('value').then((snapshot) => {
           var arr = snapshot.val();
           var timeToSchedule = rawToTime(Predict(arr,timeInSec));
@@ -118,6 +117,7 @@ class ScheduleForm extends React.Component {
     handleEvent(event) {
       event.preventDefault();
       var user = firebase.auth().currentUser;
+      firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/friends' + '/' + this.state.full_name);
     }
 
     render() {
