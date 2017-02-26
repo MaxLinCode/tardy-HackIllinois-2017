@@ -1,10 +1,11 @@
 import React from 'react'
 import firebase from 'firebase'
 import { browserHistory } from 'react-router'
+
 import {Predict, rawToTime} from './PredictTime'
 import {getEntry} from './loadData'
 
-class ScheduleForm extends React.Component {
+class AddEvent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -104,17 +105,17 @@ class ScheduleForm extends React.Component {
         //alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + ' ' + this.state.expected_time.minutes+ ' ' + this.state.expected_time.isPM + '\nArrival Time: ' + this.state.arrival_time.hours + ' ' + this.state.arrival_time.minutes + ' ' + this.state.arrival_time.isPM);
         event.preventDefault();
         var user = firebase.auth().currentUser;
-        var timeInSec = this.toSeconds(this.state.expected_time.hours,this.state.expected_time.minutes);
+        let expected = this.toSeconds(this.state.expected_time.hours,this.state.expected_time.minutes);
         if (this.state.expected_time.isPM == 'PM') {
-            timeInSec += 12 * 60 * 60;
+            expected += 12 * 60 * 60;
         }
-        getEntry(user.uid, this.state.full_name).once('value').then((snapshot) => {
-          var arr = snapshot.val();
-          var timeToSchedule = rawToTime(Predict(arr,timeInSec));
-          console.log(timeToSchedule);
-          this.setState({scheduledTime: timeToSchedule})
-        });
-        console.log('Submitted Schedule')
+        let actual = this.toSeconds(this.state.arrival_time.hours,this.state.arrival_time.minutes);
+        if (this.state.arrival_time.isPM == 'PM') {
+            actual += 12 * 60 * 60;
+        }
+        firebase.database().ref().child('users/' + user.uid).child(this.state.full_name).push([actual, expected]);
+        browserHistory.push('/dashboard')
+        console.log('Added new event')
     }
 
 
@@ -126,6 +127,19 @@ class ScheduleForm extends React.Component {
         <form onSubmit={this.handleSubmit} >
             <label><p>Full Name</p></label>
             <input className='input' type="text" name="full_name" value={this.state.full_name} onChange={this.handleChange} />
+
+            <label><p>Actual Arrival Time</p></label>
+            <div className='time-capsule'>
+            <input className='input time in' maxLength="2" name="arrival_time_hours" value={this.state.arrival_time.hours} onChange={this.handleChange}/>
+            <p className='in'>&nbsp;:&nbsp;</p>
+            <input className='input time in' maxLength="2" name="arrival_time_minutes" value={this.state.arrival_time.minutes} onChange={this.handleChange}/>
+            <div className='style-select'>
+            <select value={this.state.arrival_time.isPM} name="arrival_time_isPM" onChange={this.handleChange}>
+              <option className='in'>AM</option>
+              <option className='in'>PM</option>
+            </select>
+            </div>
+            </div>
 
             <label><p>Expected Time</p></label>
             <div className='time-capsule'>
@@ -139,7 +153,6 @@ class ScheduleForm extends React.Component {
             </select>
             </div>
             </div>
-
             
         <input className='submit btn' type="submit" value="Submit" />
         </form>
@@ -151,19 +164,4 @@ class ScheduleForm extends React.Component {
     }
 }
 
-export default ScheduleForm;
-
-
-/*
-<label><p>Actual Arrival Time</p></label>
-            <div className='time-capsule'>
-            <input className='input time in' maxLength="2" name="arrival_time_hours" value={this.state.arrival_time.hours} onChange={this.handleChange}/>
-            <p className='in'>&nbsp;:&nbsp;</p>
-            <input className='input time in' maxLength="2" name="arrival_time_minutes" value={this.state.arrival_time.minutes} onChange={this.handleChange}/>
-            <div className='style-select'>
-            <select value={this.state.arrival_time.isPM} name="arrival_time_isPM" onChange={this.handleChange}>
-              <option className='in'>AM</option>
-              <option className='in'>PM</option>
-            </select>
-            </div>
-            </div>*/
+export default AddEvent;
