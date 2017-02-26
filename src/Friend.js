@@ -43,6 +43,7 @@ class FriendForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         this.writeUserData(event, this.state.userId, this.state.full_name, this.state.email, this.state.phone);
+        browserHistory.push('/dashboard');
         //login(this.state.email, this.state.password);
     }
 
