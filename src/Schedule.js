@@ -7,20 +7,20 @@ class ScheduleForm extends React.Component {
         super(props);
         this.state = {
           full_name: '',
-          expected_time: [
+          expected_time: 
             {
               hours: '',
               minutes: '',
-              isPm: 'am',
+              isPM: 'AM',
               seconds: '',
-            }],
-          arrival_time: [
+            },
+          arrival_time: 
             {
               hours: '',
               minutes: '',
-              isPm: 'am',
+              isPM: 'name',
               seconds: ''
-            }],
+            },
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -31,7 +31,7 @@ class ScheduleForm extends React.Component {
       const name = event.target.name;
       total += this.state.expected_time.hours * 1200;
       total += this.state.expected_time.minutes * 60;
-      if (isAm == "pm") {
+      if (isAM == "pm") {
         total += 12*1200;
       }
       this.setState({
@@ -39,36 +39,58 @@ class ScheduleForm extends React.Component {
       });
     }
 
-    makeFalse(event) {
-      const name = event.target.name;
-      this.setState({
-        [name.isPm]: "pm"
-      });
-
-    }
-
-    callGetSeconds() {
-      this.makeFalse,
-      this.getSeconds
-    }
-
     handleChange(event) {
         const target = event.target;
         const name = target.name;
-        if (name == 'expected_time') {
-          this.setState
-        }
-        else if (name == 'arrival_time') {
 
+        var copy;
+        if (name == 'expected_time_hours') {
+          copy = this.state.expected_time;
+          copy.hours = target.value;
+          this.setState({
+            expected_time: copy
+          });
+        } else if (name == 'expected_time_minutes') {
+          copy = this.state.expected_time;
+          copy.minutes = target.value;
+          this.setState({
+            expected_time: copy
+          });
+        } else if (name == 'arrival_time_hours') {
+          copy = this.state.arrival_time;
+          copy.hours = target.value;
+          this.setState({
+            arrival_time: copy
+          });
+        } else if (name == 'arrival_time_minutes') {
+          copy = this.state.arrival_time;
+          copy.minutes = target.value;
+          this.setState({
+            arrival_time: copy
+          });
+        } else if (name == 'expected_time_isPM') {
+          copy = this.state.expected_time;
+          copy.isPM = target.value;
+           console.log('expect')
+          this.setState({
+            expected_time: copy
+          });
+        } else if (name == 'arrival_time_isPM') {
+          copy = this.state.arrival_time;
+          copy.isPM = target.value;
+          console.log('please')
+          this.setState({
+            arrival_time: copy
+          });
         } else {
           this.setState({
               [name]: target.value
           });
-        }
+      }
     }
 
     handleSubmit(event) {
-        alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + '\nArrival Time: ');
+        alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + ' ' + this.state.expected_time.minutes+ ' ' + this.state.expected_time.isPM + '\nArrival Time: ' + this.state.arrival_time.hours + ' ' + this.state.arrival_time.minutes + ' ' + this.state.arrival_time.isPM);
         event.preventDefault();
     }
 
@@ -84,26 +106,26 @@ class ScheduleForm extends React.Component {
 
             <label><p>Expected Time</p></label>
             <div className='time-capsule'>
-            <input className='input time in' maxLength="2" name="expected_time" value={this.state.expected_time.hours} onChange={this.handleChange}/>
+            <input className='input time in' maxLength="2" name="expected_time_hours" value={this.state.expected_time.hours} onChange={this.handleChange}/>
             <p className='in'>&nbsp;:&nbsp;</p>
-            <input className='input time in' maxLength="2" name="expected_time" value={this.state.expected_time.minutes} onChange={this.handleChange}/>
+            <input className='input time in' maxLength="2" name="expected_time_minutes" value={this.state.expected_time.minutes} onChange={this.handleChange}/>
             <div className='style-select'>
-            <select>
-              <option className='in' value={this.state.arrival_time.isPm} onClick={this.callGetSeconds}>AM</option>
-              <option className='in' value={this.state.arrival_time.isPm} onClick={this.getSeconds}>PM</option>
+            <select value={this.state.expected_time.isPM} name="expected_time_isPM" onChange={this.handleChange}>
+              <option className='in'>AM</option>
+              <option className='in'>PM</option>
             </select>
             </div>
             </div>
 
             <label><p>Actual Arrival Time</p></label>
             <div className='time-capsule'>
-            <input className='input time in' maxLength="2" name="arrival_time" value={this.state.arrival_time.hours} onChange={this.handleChange}/>
+            <input className='input time in' maxLength="2" name="arrival_time_hours" value={this.state.arrival_time.hours} onChange={this.handleChange}/>
             <p className='in'>&nbsp;:&nbsp;</p>
-            <input className='input time in' maxLength="2" name="arrival_time" value={this.state.arrival_time.minutes} onChange={this.handleChange}/>
+            <input className='input time in' maxLength="2" name="arrival_time_minutes" value={this.state.arrival_time.minutes} onChange={this.handleChange}/>
             <div className='style-select'>
-            <select>
-              <option className='in' value={this.state.arrival_time.isPm} onClick={this.callGetSeconds}>AM</option>
-              <option className='in' value={this.state.arrival_time.isPm} onClick={this.getSeconds}>PM</option>
+            <select value={this.state.arrival_time.isPM} name="arrival_time_isPM" onChange={this.handleChange}>
+              <option className='in'>AM</option>
+              <option className='in'>PM</option>
             </select>
             </div>
             </div>

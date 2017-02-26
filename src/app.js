@@ -39,13 +39,13 @@ export default class App extends React.Component {
 
   requireAuth(nextState, replace) {
     var user = firebase.auth().currentUser;
-    // FIX AUTHORIZATION
-    // if (!user) {
-    //   replace({ pathname: '/' })
-    //   console.log('Not authorized')
-    // } else {
-    //   console.log('authorized')
-    // }
+    //FIX AUTHORIZATION
+    if (this.state.authed == 'true') {
+      replace({ pathname: '/' })
+      console.log('Not authorized')
+    } else {
+      console.log('authorized')
+    }
 }
 
   handleLogout() {
