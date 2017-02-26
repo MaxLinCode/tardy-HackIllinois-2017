@@ -31,15 +31,16 @@ def predict(userId, target, expected):
     count = 0
     mult = 1
     for item in vallist:
-        diff = int(item[1]) - int(item[0])
-        if diff < (0 - 43200):
-            diff = diff + 86400
-        if diff > 43200:
-            diff = diff - 86400
-        diff = diff * mult
-        total += diff
-        count += mult
-        mult = mult * 1.03
+        if (len(item) == 2):
+            diff = int(item[1]) - int(item[0])
+            if diff < (0 - 43200):
+                diff = diff + 86400
+            if diff > 43200:
+                diff = diff - 86400
+            diff = diff * mult
+            total += diff
+            count += mult
+            mult = mult * 1.03
     avg = total / count
     print(avg)
     return expected - avg
@@ -66,4 +67,4 @@ def roundFifteen(rawval):
 #Test
 #addEntry("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", "68400", "68400")
 
-print(getNumber('kijZjJJ5ozPZxfeHYfjh3zd3TUh1', "Janice"))
+print(predict('kijZjJJ5ozPZxfeHYfjh3zd3TUh1', "Janice", 35000))
