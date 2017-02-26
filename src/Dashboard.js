@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { login } from './Auth'
-var database = firebase.database();
+//var database = firebase.database();
 
 class DashboardForm extends React.Component {
     constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from 'firebase'
-var database = firebase.database();
+//var database = firebase.database();
 
 class ScheduleForm extends React.Component {
     constructor(props) {
