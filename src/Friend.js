@@ -1,5 +1,6 @@
 import React from 'react'
 import firebase from 'firebase'
+import {browserHistory} from 'react-router'
 
 
 import { login } from './Auth'
@@ -44,6 +45,7 @@ class FriendForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         this.writeUserData(event, this.state.userId, this.state.full_name, this.state.email, this.state.phone);
+        browserHistory.push('/dashboard');
         //login(this.state.email, this.state.password);
     }
 
