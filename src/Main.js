@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default class Main extends React.Component {
+class Main extends React.Component {
     render() {
         return (
             <div>
-                <h1>hey hey, this is our main page</h1>
-                <ul role="nav">
-                    <li><Link to="/login">Login</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                </ul>
+                <div className='nav'>
+                    <img src='tardy.svg' className='logo' alt='tardy' />
+                </div>
                 {this.props.children}
             </div>
         );
     }
 }
+
+
+export default Main;

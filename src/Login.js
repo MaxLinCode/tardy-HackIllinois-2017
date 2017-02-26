@@ -1,34 +1,43 @@
 import React from 'react'
 
-class NameForm extends React.Component {
+class LoginForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {username: '', password: ''};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        const target = event.target;
+        const name = target.name;
+        this.setState({
+            [name]: target.value
+        });
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
+        alert('User: ' + this.state.username + '\nPass: ' + this.state.password);
         event.preventDefault();
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                Name:
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
-              </label>
-              <input type="submit" value="Submit" />
-            </form>
+        <div>
+        <div className='sign-in'>
+        <form onSubmit={this.handleSubmit} >
+            <label>Username</label>
+            <input className='input' type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+            <br />
+            <label>Password</label>
+            <input className='input' type="text" name="password" value={this.state.password} onChange={this.handleChange} />
+        <input className='submit btn' type="submit" value="Submit" />
+        </form>
+        </div>
+        </div>
         );
     }
 }
 
-export default NameForm;
+export default LoginForm;
