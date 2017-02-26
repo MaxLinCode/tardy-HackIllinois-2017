@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from 'firebase'
-//import {sendInvites} from '../backend/messenger.js'
+import {sendInvites} from '../backend/messenger.js'
 import { browserHistory } from 'react-router'
 import {Predict, rawToTime} from './PredictTime'
 import {getEntry} from './loadData'
@@ -27,7 +27,7 @@ class ScheduleForm extends React.Component {
             scheduledTime: '',
             event_place: '',
             target_name: '',
-
+            time_raw: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -114,9 +114,11 @@ class ScheduleForm extends React.Component {
         }
         getEntry(user.uid, this.state.full_name).once('value').then((snapshot) => {
           var arr = snapshot.val();
-          var timeToSchedule = rawToTime(Predict(arr,timeInSec));
+          var timeInRaw = Predict(arr,timeInSec);
+          var timeToSchedule = rawToTime(timeInRaw);
           console.log(timeToSchedule);
           this.setState({scheduledTime: timeToSchedule})
+          this.setState({time_raw: timeInRaw})
         });
         console.log('Submitted Schedule')
     }
@@ -124,7 +126,8 @@ class ScheduleForm extends React.Component {
     handleEvent(event) {
       event.preventDefault();
       var user = firebase.auth().currentUser;
-      this.sendInvites(user.uid, this.state.full_name, this.state.scheduledTime, this.state.event_place);
+
+      this.sendInvites(user.uid, this.state.full_name, this.state.time_raw, this.state.event_place);
     }
 
     render() {
