@@ -22,7 +22,7 @@ export function Predict (vallist, expected) {
         }
         var avg = total / count
     }
-    return expected - avg
+    return (expected - avg)%86400;
   }
 
 function padNum(n){

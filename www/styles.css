@@ -97,6 +97,10 @@ option:focus {
   text-align: center;
   margin: 0 auto;
 }
+.event {
+  max-width: 350px;
+
+}
 .sign-in p {
   text-align: left;
 
