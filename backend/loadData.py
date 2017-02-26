@@ -43,7 +43,7 @@ def predict(userId, target, expected):
             mult = mult * 1.03
     avg = total / count
     print(avg)
-    return expected - avg
+    return (expected - avg) % 86400
 
 def rawToTime(rawval):
 	intval = int(rawval)
