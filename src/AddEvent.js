@@ -113,7 +113,7 @@ class AddEvent extends React.Component {
         if (this.state.arrival_time.isPM == 'PM') {
             actual += 12 * 60 * 60;
         }
-        firebase.database().ref().child('users/' + user.uid).child(this.state.full_name).push([actual, expected]);
+        firebase.database().ref().child('users/' + user.uid).child(this.state.full_name).push([expected, actual]);
         browserHistory.push('/dashboard')
         console.log('Added new event')
     }
