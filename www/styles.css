@@ -5,15 +5,68 @@ body {
   text-align: center;
   background: white;
   color: #2C2B39;
+  margin-bottom: 100px;
 }
-.input {
+p {
+  margin: 0;
+}
+.input, .label{
   width: 100%;
   border: 0;
   border-bottom: 2px solid #908FB2;
   font-size: 20px;
   font-family: "NTR", sans-serif;
   padding: 0px 0;
+  text-align: left;
 }
+.time {
+  display: inline;
+  width: 30px;
+}
+.in {
+  display: inline;
+  height: 30px;
+  text-align: center;
+
+}
+.style-select select {
+  background: transparent;
+  border: none;
+  padding: 0px 0;
+  font-family: "NTR", sans-serif;
+  font-size: 15px;
+  color: #2C2B39;
+  padding: 10px;
+  color: white;
+
+}
+.time-capsule {
+  align-items: baseline;
+  display: flex;
+  justify-content: flex-start;;
+}
+.style-select {
+    margin: 0 10px;
+    display: inline-block;
+   width: 67px;
+  -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 50px;
+   no-repeat 96% 0;
+   overflow: hidden;
+   background: #94F7DA;
+}
+.style-select:focus {
+  border: 0;
+}
+select:focus {
+  border: 0;
+}
+
+option:focus {
+  border: 0;
+}
+
 .input:focus {
   outline: none;
 }
@@ -21,7 +74,7 @@ body {
   padding: 7px 20px;
   border-radius: 100px;
   border: 0;
-  background-color: #908FB2;
+  background-color: #94F7DA;
   width: 100%;
   font-size: 20px;
   font-family: "NTR", sans-serif;
