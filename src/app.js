@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, Redirect, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, Redirect, hashHistory, browserHistory } from 'react-router';
 import * as firebase from "firebase";
 import { logout } from './Auth'
 import { firebaseAuth } from './config/fireConstants'
@@ -14,54 +14,58 @@ import SignUp from './SignUp'
 import Dashboard from './Dashboard'
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.state = {"authed": "false"};
     this.handleLogout = this.handleLogout.bind(this)
+    this.requireAuth = this.requireAuth.bind(this)
   }
 
-  componentWillMount() {
-    this.removeListener = firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      this.setState({ authed: "true" });
-    }
-    else {
-      this.setState({ authed: "false" });
-    }
-    }.bind(this));
+  componentDidMount () {
+    this.unsubscribe = firebaseAuth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(this.state.authed)
+        this.setState({
+          authed: true
+        })
+      }
+    })
   }
 
-  componentDidMount() {
-    this.removeListener();
+  componentWillUnmount () {
+    this.unsubscribe()
   }
 
   requireAuth(nextState, replace) {
+    console.log(this.state.authed)
     var user = firebase.auth().currentUser;
-    if (!user) {
-      replace({
-        pathname: '/login'
-      })
-    }
+    // FIX AUTHORIZATION
+    // if (!user) {
+    //   replace({ pathname: '/' })
+    //   console.log('Not authorized')
+    // } else {
+    //   console.log('authorized')
+    // }
 }
 
   handleLogout() {
     logout();
     this.setState({authed: false});
+    browserHistory.push('/login')
   }
 
   render() {
     return (
       <div>
-        <Router history={hashHistory}>
+        <Router history={browserHistory}>
           <Route path="/" component={Home} >
             <IndexRoute component={Login} />
             <Route path="/about" component={About} />
             <Route path="/login" component={Login} />
-            <Route path="/schedule" component={Schedule} onEnter={this.requireAuth}/>
+            <Route path="/schedule" component={Schedule} onEnter={this.requireAuth} />
           </Route>
           <Route path="*" component={NotFound}/>
         </Router>
-        <button onClick={this.handleLogout}>Logout</button>
       </div>
     );
   }
@@ -70,10 +74,3 @@ export default class App extends React.Component {
 
 
 ReactDOM.render(<App />, document.getElementById('app'));
-
-/*
- <button onClick={() => {
-          this.setState({authed: 'true'})
-          logout()
-        }}>Logout</button>
-*/
