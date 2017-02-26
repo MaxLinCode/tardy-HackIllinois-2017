@@ -28,16 +28,30 @@ def predict(userId, target, expected):
         diff = int(item[1]) - int(item[0])
         if diff < (0 - 43200):
             diff = diff + 86400
+        if diff > 43200:
+            diff = diff - 86400
         diff = diff * mult
         total += diff
         count += mult
-        mult = mult * 1.01
+        mult = mult * 1.03
     avg = total / count
     print(avg)
     return expected - avg
 
+def rawToTime(rawval):
+    intval = int(rawval)
+    seconds = intval % 60
+    intval = intval // 60
+    minutes = intval % 60
+    intval = intval // 60
+    hours = intval % 24
+    return ("%02d:%02d:%02d" % (hours, minutes, seconds))
+
 
 #Test
-addEntry("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", "68400", "68400")
+#addEntry("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", "68400", "68400")
 
-print(predict('kijZjJJ5ozPZxfeHYfjh3zd3TUh1', "Janice", 35000))
+testval = predict('kijZjJJ5ozPZxfeHYfjh3zd3TUh1', "Janice", 34980)
+print(testval)
+print(rawToTime(34980))
+print(rawToTime(testval))
