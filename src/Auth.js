@@ -36,3 +36,7 @@ export function saveUser (user) {
     })
     .then(() => user)
 }
+
+export function getUserId () {
+  return firebase.auth().currentUser;
+}

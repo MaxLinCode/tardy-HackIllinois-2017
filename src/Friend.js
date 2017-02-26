@@ -1,7 +1,8 @@
 import React from 'react'
-//import firebase from 'firebase'
+import firebase from 'firebase'
 
 import { login } from './Auth'
+import { getUserId } from './Auth'
 
 class FriendForm extends React.Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class FriendForm extends React.Component {
           email: '',
           password: '',
           phone: '',
+          userId: this.getUserId,
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -24,15 +26,18 @@ class FriendForm extends React.Component {
             [name]: target.value
         });
     }
+    writeUserData(userId, full_name, email, phone) {
+      firebase.database().ref('users/' + this.userId).set({
+        name: full_name,
+        email: email,
+        number: phone,
+      });
+    }
 
     handleSubmit(event) {
         event.preventDefault();
-        login(this.state.email, this.state.password);
-    }
-    writeUserData(userId, full_name) {
-      firebase.database().ref('users/' + userId).set({
-        name: full_name,
-      });
+        this.writeUserData(this.state.userId, this.state.full_name, this.state.email, this.state.phone);
+        //login(this.state.email, this.state.password);
     }
 
     render() {
@@ -50,9 +55,7 @@ class FriendForm extends React.Component {
               <label><p>Phone Number</p></label>
               <input className='input' maxLength='10' type="text" name="phone" value={this.state.phone} onChange={this.handleChange} />
               <br />
-              <label><p>Password</p></label>
-              <input className='input' type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-          <input className='submit btn' type="submit" value="Submit" />
+          <input className='submit btn' type="submit" value="Submit" onChange={this.handleChange} />
           </form>
           </div>
         </div>
