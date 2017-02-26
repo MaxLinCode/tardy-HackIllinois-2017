@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from 'firebase'
-import {sendInvites} from '../backend/messenger.js'
+//import {sendInvites} from '../backend/messenger.js'
 import { browserHistory } from 'react-router'
 import {Predict, rawToTime} from './PredictTime'
 import {getEntry} from './loadData'
@@ -24,7 +24,10 @@ class ScheduleForm extends React.Component {
               isPM: 'AM',
               seconds: ''
             },
-            scheduledTime: ''
+            scheduledTime: '',
+            event_place: '',
+            target_name: '',
+
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -121,7 +124,7 @@ class ScheduleForm extends React.Component {
     handleEvent(event) {
       event.preventDefault();
       var user = firebase.auth().currentUser;
-      firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/friends' + '/' + this.state.full_name);
+      this.sendInvites(user.uid, this.state.full_name, this.state.scheduledTime, this.state.event_place);
     }
 
     render() {
@@ -132,6 +135,8 @@ class ScheduleForm extends React.Component {
         <form onSubmit={this.handleSubmit} >
             <label><p>Full Name</p></label>
             <input className='input' type="text" name="full_name" value={this.state.full_name} onChange={this.handleChange} />
+            <label><p>Meeting Place</p></label>
+            <input className='input' type="text" name="event_place" value={this.state.event_place} onChange={this.handleChange} />
 
             <label><p>Expected Time</p></label>
             <div className='time-capsule'>
