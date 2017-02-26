@@ -19,6 +19,12 @@ def addEntry(userId, target, expected, actual):
 def getEntry(userId, target):
     return db.child('users/' + userId).child(target).get().val()
 
+def getNumber(userId, target):
+    uname = db.child('users/' + userId).child("name").get().val()[0]
+    tname = db.child('users/' + userId).child(target).child("name").get().val()[0]
+    tnum = db.child('users/' + userId).child(target).child("number").get().val()[0]
+    return [uname, tname, tnum]
+
 def predict(userId, target, expected):
     vallist = list(getEntry(userId, target).values())
     total = 0
@@ -45,13 +51,19 @@ def rawToTime(rawval):
     minutes = intval % 60
     intval = intval // 60
     hours = intval % 24
-    return ("%02d:%02d:%02d" % (hours, minutes, seconds))
+    return ("%02d:%02d" % (hours, minutes))
+
+def roundFifteen(rawval):
+    intval = int(rawval) // 60
+    bias = intval % 15
+    if bias < 7.5:
+        bias = 0
+    else:
+        bias = 15
+    return (((intval // 15) * 15) + bias) * 60
 
 
 #Test
 #addEntry("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", "68400", "68400")
 
-testval = predict('kijZjJJ5ozPZxfeHYfjh3zd3TUh1', "Janice", 34980)
-print(testval)
-print(rawToTime(34980))
-print(rawToTime(testval))
+print(getNumber('kijZjJJ5ozPZxfeHYfjh3zd3TUh1', "Janice"))
