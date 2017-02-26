@@ -29,6 +29,11 @@ class SignUpForm extends React.Component {
         event.preventDefault();
         login(this.state.email, this.state.password);
     }
+    writeUserData(userId, full_name) {
+      firebase.database().ref('users/' + userId).set({
+        name: full_name,
+      });
+    }
 
     render() {
         return (
