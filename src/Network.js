@@ -37,7 +37,7 @@ class NetworkForm extends React.Component {
           <div className='sign-in'>
           <h1>Friends</h1>
           <ul>
-           
+
            </ul>
         </div>
         );
