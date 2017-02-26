@@ -14,6 +14,7 @@ import SignUp from './SignUp'
 import Dashboard from './Dashboard'
 import Friend from './Friend'
 import Network from './Network'
+import MeetupDetails from './MeetupDetails'
 
 export default class App extends React.Component {
   constructor(props, context) {
@@ -39,6 +40,8 @@ export default class App extends React.Component {
 
   requireAuth(nextState, replace) {
     var user = firebase.auth().currentUser;
+    console.log('userId = ' + user);
+
     //FIX AUTHORIZATION
     if (this.state.authed == 'true') {
       replace({ pathname: '/' })
@@ -66,6 +69,7 @@ export default class App extends React.Component {
             <Route path="/dashboard" component={Dashboard} onEnter={this.requireAuth} />
             <Route path="/friend" component={Friend} onEnter={this.requireAuth} />
             <Route path="/network" component={Network} onEnter={this.requireAuth} />
+            <Route path="/meetup-details" component={MeetupDetails} onEnter={this.requireAuth} />
           </Route>
           <Route path="*" component={NotFound}/>
         </Router>

@@ -37,6 +37,10 @@ export function saveUser (user) {
     .then(() => user)
 }
 
-export function getUserId () {
-  return firebase.auth().currentUser;
+export function getUserId() {
+  var user = firebase.auth().currentUser.uid;
+  var uid = user.uid;
+  console.log('userId = ' + uid);
+  return uid;
+
 }

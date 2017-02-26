@@ -1,6 +1,7 @@
 import React from 'react'
 import firebase from 'firebase'
 
+
 import { login } from './Auth'
 import { getUserId } from './Auth'
 
@@ -12,7 +13,7 @@ class FriendForm extends React.Component {
           email: '',
           password: '',
           phone: '',
-          userId: this.getUserId,
+          userId: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -27,7 +28,9 @@ class FriendForm extends React.Component {
         });
     }
     writeUserData(userId, full_name, email, phone) {
-      firebase.database().ref('users/' + this.userId).set({
+      console.log('userId = ' + firebase.auth().currentUser.uid;
+      console.log('full_name = ' + this.state.full_name);
+      firebase.database().ref('users/' + this.state.userId + '/' + this.state.full_name).set({
         name: full_name,
         email: email,
         number: phone,
