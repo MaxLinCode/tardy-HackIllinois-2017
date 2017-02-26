@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: "NTR", sans-serif;
+  font-size: 20px;
+  text-align: center;
+  background: white;
+  color: #2C2B39;
+}
+.input {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #908FB2;
+  font-size: 20px;
+  font-family: "NTR", sans-serif;
+  padding: 0px 0;
+}
+.input:focus {
+  outline: none;
+}
+.btn {
+  padding: 7px 20px;
+  border-radius: 100px;
+  border: 0;
+  background-color: #908FB2;
+  width: 100%;
+  font-size: 20px;
+  font-family: "NTR", sans-serif;
+  color: white;
+}
+.submit {
+  margin-top: 50px;
+}
+
+.sign-in {
+  max-width: 200px;
+  text-align: center;
+  margin: 0 auto;
+}
+.sign-in p {
+  text-align: left;
+
+}
+.nav {
+  padding: 50px 0;
+  background: #908FB2;
+}
+img {
+  max-width: 200px;
+}
