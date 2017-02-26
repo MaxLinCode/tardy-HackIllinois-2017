@@ -8,7 +8,8 @@ import NotFound from './NotFound'
 import About from './About'
 import Login from './Login'
 import Schedule from './Schedule'
-import SignIn from './SignIn'
+import SignUp from './SignUp'
+import Dashboard from './Dashboard'
 
 ReactDOM.render((
     <Router history={hashHistory}>
@@ -16,7 +17,8 @@ ReactDOM.render((
         <Route path="/about" component={About}/>
         <Route path="/login" component={Login}/>
         <Route path="/schedule" component={Schedule}/>
-        <Route path="/signin" component={SignIn}/>
+        <Route path="/signup" component={SignUp}/>
+        <Route path="/dashboard" component={Dashboard}/>
       </Route>
       <Route path="*" component={NotFound}/>
     </Router>

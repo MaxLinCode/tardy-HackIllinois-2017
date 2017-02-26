@@ -2,10 +2,15 @@ import React from 'react'
 
 import { login } from './Auth'
 
-class LoginForm extends React.Component {
+class DashboardForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {email: '', password: ''};
+        this.state = {
+          full_name: '',
+          email: '',
+          password: '',
+          phone: '',
+        };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,11 +32,17 @@ class LoginForm extends React.Component {
     render() {
         return (
         <div>
-          <br/>
+          <h1>Sign Up with Tardy</h1>
           <div className='sign-in'>
           <form onSubmit={this.handleSubmit} >
+            <label><p>Full Name</p></label>
+            <input className='input' type="text" name="full_name" value={this.state.full_name} onChange={this.handleChange} />
+
               <label><p>Email</p></label>
               <input className='input' type="text" name="email" value={this.state.email} onChange={this.handleChange} />
+              <br />
+              <label><p>Phone Number</p></label>
+              <input className='input' maxLength='10' type="text" name="phone" value={this.state.phone} onChange={this.handleChange} />
               <br />
               <label><p>Password</p></label>
               <input className='input' type="password" name="password" value={this.state.password} onChange={this.handleChange} />
@@ -43,4 +54,4 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm;
+export default DashboardForm;
