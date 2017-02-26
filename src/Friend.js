@@ -3,7 +3,6 @@ import firebase from 'firebase'
 
 
 import { login } from './Auth'
-import { getUserId } from './Auth'
 
 class FriendForm extends React.Component {
     constructor(props) {
@@ -27,10 +26,15 @@ class FriendForm extends React.Component {
             [name]: target.value
         });
     }
-    writeUserData(userId, full_name, email, phone) {
+    writeUserData(event, userId, full_name, email, phone) {
       console.log('userId = ' + firebase.auth().currentUser.uid);
-      console.log('full_name = ' + this.state.full_name);
-      firebase.database().ref('users/' + this.state.userId + '/' + this.state.full_name).set({
+      const target = event.target;
+      const name = target.name;
+      this.setState({
+        [name]: target.value
+      })
+      firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/friends' + '/' + this.state.full_name).set({
+
         name: full_name,
         email: email,
         number: phone,
@@ -39,7 +43,7 @@ class FriendForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.writeUserData(this.state.userId, this.state.full_name, this.state.email, this.state.phone);
+        this.writeUserData(event, this.state.userId, this.state.full_name, this.state.email, this.state.phone);
         //login(this.state.email, this.state.password);
     }
 
