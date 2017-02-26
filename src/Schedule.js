@@ -1,6 +1,6 @@
 import React from 'react'
 
-class LoginForm extends React.Component {
+class ScheduleForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {username: '', password: ''};
@@ -26,14 +26,14 @@ class LoginForm extends React.Component {
         return (
         <div>
         <div className='sign-in'>
-        <h1>Sign In</h1>
-        <form onSubmit={this.handleSubmit}>
+        <h1>Schedule</h1>
+        <form onSubmit={this.handleSubmit} >
             <label>Username</label>
             <input className='input' type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-            <br/>
+            <br />
             <label>Password</label>
             <input className='input' type="text" name="password" value={this.state.password} onChange={this.handleChange} />
-        <input className='submit btn' type="submit" value="Submit"/>
+        <input className='submit btn' type="submit" value="Submit" />
         </form>
         </div>
         </div>
@@ -41,4 +41,4 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm;
+export default ScheduleForm;
