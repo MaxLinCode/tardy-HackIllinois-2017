@@ -1,5 +1,6 @@
 import React from 'react'
 import firebase from 'firebase'
+import { browserHistory } from 'react-router';
 
 import { login } from './Auth'
 
@@ -22,6 +23,7 @@ class LoginForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         login(this.state.email, this.state.password);
+        browserHistory.push('/schedule')
     }
 
     render() {

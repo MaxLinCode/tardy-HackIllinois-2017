@@ -6,22 +6,21 @@ class ScheduleForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          username: '',
           full_name: '',
-          expected_time: [
+          expected_time: 
             {
               hours: '',
               minutes: '',
               isPm: 'am',
               seconds: '',
-            }],
-          arrival_time: [
+            },
+          arrival_time: 
             {
               hours: '',
               minutes: '',
               isPm: 'am',
               seconds: ''
-            }],
+            },
         };
 
         this.handleChange = this.handleChange.bind(this);

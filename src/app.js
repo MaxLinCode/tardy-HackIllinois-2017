@@ -22,7 +22,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount () {
-    this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
+    this.unsubscribe = firebaseAuth().onAuthStateChanged((user) => {
       if (user) {
         console.log(this.state.authed)
         this.setState({
@@ -33,18 +33,19 @@ export default class App extends React.Component {
   }
 
   componentWillUnmount () {
-    //this.removeListener()
+    this.unsubscribe()
   }
 
   requireAuth(nextState, replace) {
     console.log(this.state.authed)
     var user = firebase.auth().currentUser;
-    if (!user) {
-      replace({ pathname: '/' })
-      console.log('Not authorized')
-    } else {
-      console.log('authorized')
-    }
+    // FIX AUTHORIZATION
+    // if (!user) {
+    //   replace({ pathname: '/' })
+    //   console.log('Not authorized')
+    // } else {
+    //   console.log('authorized')
+    // }
 }
 
   handleLogout() {
@@ -65,7 +66,6 @@ export default class App extends React.Component {
           </Route>
           <Route path="*" component={NotFound}/>
         </Router>
-        <button onClick={this.handleLogout}>Logout</button>
       </div>
     );
   }
