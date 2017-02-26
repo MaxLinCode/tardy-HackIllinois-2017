@@ -12,6 +12,17 @@ app.get('*', function(req,res){
 	res.sendFile('./www/index.html');
 });
 
+/*app.get('/api/data', function(req,res)){
+	//req input 
+	//res output
+	var spawn = require("child_process").spawn;
+	var process = spawn('python', ["./backend/.py", arg1, arg2, arg3, arg4]);
+	process.stdout.on('data', function(data){
+	});
+});*/
+
+app.stdout.on('data', function(data){
+}); //do stuff with returned python script
 var server = app.listen(8080, function() {
 	console.log('Server running at http://localhost:8080');
 });
