@@ -32,11 +32,6 @@ class NetworkForm extends React.Component {
       });
     }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 067ab3796d587c5fe1dbac815110c976aac6e64d
     render() {
         return (
           <div className='sign-in'>
