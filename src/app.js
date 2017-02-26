@@ -24,7 +24,6 @@ export default class App extends React.Component {
   componentDidMount () {
     this.unsubscribe = firebaseAuth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(this.state.authed)
         this.setState({
           authed: true
         })
@@ -37,7 +36,6 @@ export default class App extends React.Component {
   }
 
   requireAuth(nextState, replace) {
-    console.log(this.state.authed)
     var user = firebase.auth().currentUser;
     // FIX AUTHORIZATION
     // if (!user) {

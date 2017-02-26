@@ -7,20 +7,20 @@ class ScheduleForm extends React.Component {
         super(props);
         this.state = {
           full_name: '',
-          expected_time: 
+          expected_time: [
             {
               hours: '',
               minutes: '',
               isPm: 'am',
               seconds: '',
-            },
-          arrival_time: 
+            }],
+          arrival_time: [
             {
               hours: '',
               minutes: '',
               isPm: 'am',
               seconds: ''
-            },
+            }],
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -38,6 +38,7 @@ class ScheduleForm extends React.Component {
         [name.seconds]: total
       });
     }
+
     makeFalse(event) {
       const name = event.target.name;
       this.setState({
@@ -54,13 +55,20 @@ class ScheduleForm extends React.Component {
     handleChange(event) {
         const target = event.target;
         const name = target.name;
-        this.setState({
-            [name]: target.value
-        });
+        if (name == 'expected_time') {
+          this.setState
+        } 
+        else if (name == 'arrival_time') {
+          
+        } else {
+          this.setState({
+              [name]: target.value
+          });
+        }
     }
 
     handleSubmit(event) {
-        alert('User: ' + this.state.username + '\nExpected Time: ' + this.state.expected_time + '\nArrival Time: ');
+        alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + '\nArrival Time: ');
         event.preventDefault();
     }
 
@@ -71,13 +79,13 @@ class ScheduleForm extends React.Component {
         <h1>Schedule</h1>
         <form onSubmit={this.handleSubmit} >
             <label><p>Full Name</p></label>
-            <input className='input' type="text" name="full_name" value={this.state.name} onChange={this.handleChange} />
+            <input className='input' type="text" name="full_name" value={this.state.full_name} onChange={this.handleChange} />
 
             <label><p>Expected Time</p></label>
             <div className='time-capsule'>
-            <input className='input time in' maxLength="2" value={this.state.expected_time.hours} onChange={this.handleChange}/>
+            <input className='input time in' maxLength="2" name="expected_time" value={this.state.expected_time.hours} onChange={this.handleChange}/>
             <p className='in'>&nbsp;:&nbsp;</p>
-            <input className='input time in' maxLength="2" value={this.state.expected_time.minutes} onChange={this.handleChange}/>
+            <input className='input time in' maxLength="2" name="expected_time" value={this.state.expected_time.minutes} onChange={this.handleChange}/>
             <div className='style-select'>
             <select>
               <option className='in' value={this.state.arrival_time.isPm} onClick={this.callGetSeconds}>AM</option>
@@ -88,9 +96,9 @@ class ScheduleForm extends React.Component {
 
             <label><p>Actual Arrival Time</p></label>
             <div className='time-capsule'>
-            <input className='input time in' maxLength="2" value={this.state.arrival_time.hours} onChange={this.handleChange}/>
+            <input className='input time in' maxLength="2" name="arrival_time" value={this.state.arrival_time.hours} onChange={this.handleChange}/>
             <p className='in'>&nbsp;:&nbsp;</p>
-            <input className='input time in' maxLength="2" value={this.state.arrival_time.minutes} onChange={this.handleChange}/>
+            <input className='input time in' maxLength="2" name="arrival_time" value={this.state.arrival_time.minutes} onChange={this.handleChange}/>
             <div className='style-select'>
             <select>
               <option className='in' value={this.state.arrival_time.isPm} onClick={this.callGetSeconds}>AM</option>
