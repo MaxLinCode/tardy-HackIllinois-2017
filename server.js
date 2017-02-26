@@ -13,14 +13,6 @@ app.get('*', function(req,res){
 	res.sendFile('./www/index.html');
 });
 
-/*app.get('/api/data', function(req,res)){
-	//req input 
-	//res output
-	var spawn = require("child_process").spawn;
-	var process = spawn('python', ["./backend/.py", arg1, arg2, arg3, arg4]);
-	process.stdout.on('data', function(data){
-	});
-});*/
 /*
 app.stdout.on('data', function(data){
 }); //do stuff with returned python script
@@ -45,6 +37,13 @@ app.use(express.static(__dirname + '/www'))
 // handle every other route with index.html, which will contain
 // a script tag to your application's JavaScript file(s).
 app.get('*', function (request, response){
+  if (request.url == '/api/data') {
+	  console.log('Data request')
+	  //var spawn = require("child_process").spawn;
+	  //var process = spawn('python', ["./backend/runPredict.py", uid, target, time]);
+	  //process.stdout.on('data', function(data){
+	  //});
+  }
   response.sendFile(path.resolve(__dirname, 'www', 'index.html'))
 })
 
