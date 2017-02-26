@@ -11,14 +11,14 @@ class ScheduleForm extends React.Component {
             {
               hours: '',
               minutes: '',
-              isPm: 'am',
+              isPM: 'AM',
               seconds: '',
             },
           arrival_time: 
             {
               hours: '',
               minutes: '',
-              isPm: 'am',
+              isPM: 'name',
               seconds: ''
             },
         };
@@ -31,25 +31,12 @@ class ScheduleForm extends React.Component {
       const name = event.target.name;
       total += this.state.expected_time.hours * 1200;
       total += this.state.expected_time.minutes * 60;
-      if (isAm == "pm") {
+      if (isAM == "pm") {
         total += 12*1200;
       }
       this.setState({
         [name.seconds]: total
       });
-    }
-
-    makeFalse(event) {
-      const name = event.target.name;
-      this.setState({
-        [name.isPm]: "pm"
-      });
-
-    }
-
-    callGetSeconds() {
-      this.makeFalse,
-      this.getSeconds
     }
 
     handleChange(event) {
@@ -84,18 +71,18 @@ class ScheduleForm extends React.Component {
         } else if (name == 'expected_time_isPM') {
           copy = this.state.expected_time;
           copy.isPM = target.value;
+           console.log('expect')
           this.setState({
             expected_time: copy
           });
         } else if (name == 'arrival_time_isPM') {
           copy = this.state.arrival_time;
           copy.isPM = target.value;
-          console.log(target.value)
+          console.log('please')
           this.setState({
             arrival_time: copy
           });
-        }
-        else {
+        } else {
           this.setState({
               [name]: target.value
           });
@@ -103,7 +90,7 @@ class ScheduleForm extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + ' ' + this.state.expected_time.minutes+ ' ' + this.state.expected_time.isPm + '\nArrival Time: ' + this.state.arrival_time.hours + ' ' + this.state.arrival_time.minutes + ' ' + this.state.expected_time.isPm);
+        alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + ' ' + this.state.expected_time.minutes+ ' ' + this.state.expected_time.isPM + '\nArrival Time: ' + this.state.arrival_time.hours + ' ' + this.state.arrival_time.minutes + ' ' + this.state.arrival_time.isPM);
         event.preventDefault();
     }
 
@@ -123,9 +110,9 @@ class ScheduleForm extends React.Component {
             <p className='in'>&nbsp;:&nbsp;</p>
             <input className='input time in' maxLength="2" name="expected_time_minutes" value={this.state.expected_time.minutes} onChange={this.handleChange}/>
             <div className='style-select'>
-            <select>
-              <option className='in' value={this.state.expected_time.isPm} name="expected_time_isPm" onClick={this.callGetSeconds} onChange={this.handleChange}>AM</option>
-              <option className='in' value={this.state.expected_time.isPm} name="expected_time_isPm" onClick={this.getSeconds} onChange={this.handleChange}>PM</option>
+            <select value={this.state.expected_time.isPM} name="expected_time_isPM" onChange={this.handleChange}>
+              <option className='in'>AM</option>
+              <option className='in'>PM</option>
             </select>
             </div>
             </div>
@@ -136,9 +123,9 @@ class ScheduleForm extends React.Component {
             <p className='in'>&nbsp;:&nbsp;</p>
             <input className='input time in' maxLength="2" name="arrival_time_minutes" value={this.state.arrival_time.minutes} onChange={this.handleChange}/>
             <div className='style-select'>
-            <select>
-              <option className='in' value={this.state.arrival_time_isPm} name="arrival_time_isPm" onClick={this.callGetSeconds} onChange={this.handleChange}>AM</option>
-              <option className='in' value={this.state.arrival_time_isPm} name="arrival_time_isPm" onClick={this.getSeconds} onChange={this.handleChange}>PM</option>
+            <select value={this.state.arrival_time.isPM} name="arrival_time_isPM" onChange={this.handleChange}>
+              <option className='in'>AM</option>
+              <option className='in'>PM</option>
             </select>
             </div>
             </div>
