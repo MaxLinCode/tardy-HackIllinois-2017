@@ -9,16 +9,6 @@ import About from './About'
 import Login from './Login'
 import Schedule from './Schedule'
 
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyDiL1XGJxQqqd8WCnwx6FQvzapSphklSmk",
-  authDomain: "tardy-ccd34.firebaseapp.com",
-  databaseURL: "https://tardy-ccd34.firebaseio.com",
-  storageBucket: "tardy-ccd34.appspot.com",
-  messagingSenderId: "959407744332"
-};
-firebase.initializeApp(config);
-
 ReactDOM.render((
     <Router history={hashHistory}>
       <Route path="/" component={Main}>
@@ -29,3 +19,11 @@ ReactDOM.render((
       <Route path="*" component={NotFound}/>
     </Router>
 ), document.getElementById('app'));
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+  }
+});
+
+
