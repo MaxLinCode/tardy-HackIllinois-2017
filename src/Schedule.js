@@ -37,7 +37,9 @@ class ScheduleForm extends React.Component {
     getSeconds(event) {
       var total;
       const name = event.target.name;
-      total += this.state.expected_time.hours * 1200;
+      if (this.state.expected_time.hours != 12) {
+      	total += this.state.expected_time.hours * 1200;
+      }
       total += this.state.expected_time.minutes * 60;
       if (isAM == "pm") {
         total += 12*1200;
