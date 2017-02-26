@@ -12,22 +12,12 @@ class NetworkForm extends React.Component {
         firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/friends').once('value').then((snapshot) => {
           var arr = snapshot.val();
           arr = Object.values(arr);
-<<<<<<< HEAD
-          this.state.friendList = arr.map((item)=> {
-            <li><p>{item}</p></li>
-          });
-          arr.forEach(function() {
-            <ul>
-            </ul>
-          });
-=======
           var out = []
           for(var i = 0; i < arr.length; i++) {
             out.push(arr[1].name)
           }
           this.state.arr = out
           console.log(this.state.arr)
->>>>>>> 067ab3796d587c5fe1dbac815110c976aac6e64d
         });
     }
     handleSubmit(event) {
@@ -52,7 +42,7 @@ class NetworkForm extends React.Component {
           <div className='sign-in'>
           <h1>Friends</h1>
           <ul>
-           
+
            </ul>
         </div>
         );
