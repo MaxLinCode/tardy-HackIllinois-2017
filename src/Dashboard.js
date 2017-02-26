@@ -1,5 +1,5 @@
 import React from 'react'
-import {browserHistory} from 'react-router'
+import {browserHistory, Link} from 'react-router'
 import { login } from './Auth'
 //var database = firebase.database();
 
@@ -27,6 +27,10 @@ class DashboardForm extends React.Component {
     handleSchedule() {
       browserHistory.push('/schedule');
     }
+    handleAddEvent() {
+      browserHistory.push('/add-event');
+    }
+
     handleFriend() {
       browserHistory.push('/friend');
     }
@@ -46,6 +50,9 @@ class DashboardForm extends React.Component {
             </div>
             <br/>
             <div className='submit btn' onClick={this.handleSchedule}><p>Schedule a Meetup</p>
+            </div>
+            <br/>
+            <div className='submit btn' onClick={this.handleAddEvent}><p>Add an Event</p>
             </div>
             <br/>
             <div className='submit btn' onClick={this.handleNetwork}><p>See Network</p>

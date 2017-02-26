@@ -15,6 +15,7 @@ import Dashboard from './Dashboard'
 import Friend from './Friend'
 import Network from './Network'
 import MeetupDetails from './MeetupDetails'
+import AddEvent from './AddEvent'
 
 
 export default class App extends React.Component {
@@ -68,6 +69,7 @@ export default class App extends React.Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
             <Route path="/schedule" component={Schedule} onEnter={this.requireAuth} />
+            <Route path="/add-event" component={AddEvent} onEnter={this.requireAuth} />
             <Route path="/dashboard" component={Dashboard} onEnter={this.requireAuth} />
             <Route path="/friend" component={Friend} onEnter={this.requireAuth} />
             <Route path="/network" component={Network} onEnter={this.requireAuth} />
