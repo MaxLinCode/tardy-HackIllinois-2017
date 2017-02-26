@@ -1,20 +1,20 @@
 import React from 'react'
-import firebase from 'firebase'
-var database = firebase.database();
+//import firebase from 'firebase'
+//var database = firebase.database();
 
 class ScheduleForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
           full_name: '',
-          expected_time: 
+          expected_time:
             {
               hours: '',
               minutes: '',
               isPm: 'am',
               seconds: '',
             },
-          arrival_time: 
+          arrival_time:
             {
               hours: '',
               minutes: '',
