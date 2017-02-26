@@ -1,6 +1,5 @@
 from firebase import firebase
 
-
 import pyrebase
 
 config = {
@@ -17,7 +16,12 @@ db = firebase.database()
 def addEntry(userId, target, expected, actual):
     db.child('users/' + userId).child(target).push([expected, actual]);
 
+def getEntry(userId, target):
+    return db.child('users/' + userId).child(target).get().val()
+
 #Test
-addEntry("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", "80000", "90000")
+#addEntry("kijZjJJ5ozPZxfeHYfjh3zd3TUh1", "Janice", "80000", "90000")
 
+data = getEntry('kijZjJJ5ozPZxfeHYfjh3zd3TUh1', "Janice")
 
+print(data.val())
