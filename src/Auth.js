@@ -13,11 +13,12 @@ export function auth (email, pw) {
 }
 
 export function logout () {
+  console.log("User logged out.")
   return firebaseAuth().signOut()
 }
 
 export function login (email, pw) {
-  return firebaseAuth().signInWithEmailAndPassword(email, pw)
+  return firebaseAuth().signInWithEmailAndPassword(email, pw).then(() => console.log("User logged in"))
   .catch((error) => {
     // Handle Errors here.
     var errorCode = error.code;
