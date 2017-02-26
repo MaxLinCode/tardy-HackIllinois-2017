@@ -19,9 +19,13 @@ def sendMessage(number, message_body):
          to="+1" + str(number),    # Replace with your phone number
          from_=twilioNum) # Replace with your Twilio number
 
-    logMessage("Message Sent to: %d\nMessage Content: %s\n\n" % (number, message_body)) 
+    logMessage("Message Sent to: %s\nMessage Content: %s\n\n" % (number, message_body)) 
 
 def sendInvites(userId, target, time, place):
+    print("uId: " + userId)
+    print("\ntarget: "+target)
+    print("\ntime: "+str(time))
+    print("\nplace: " + place)
     d = {}
     time = rawToTime(time)
     userName = ""
@@ -32,14 +36,14 @@ def sendInvites(userId, target, time, place):
 
     for key in d:
         sendMessage(d[key][0], d[key][1])
+    print("sent message")
 
 def logMessage(text):
     f = open("out.log", 'a+')
     f.write(text)
     f.close()
 
+#sendInvites("0mAwO57HKoNB1DP8S1CNwtvEOMr1", "Ian Renfro", 43200, "Thomas M. Siebel Center for Computer Science")
 #sendInvites("PySYUaC1daQ7lezQ9HhvfV5Xdv73", "Janice Huang", predict("PySYUaC1daQ7lezQ9HhvfV5Xdv73", "Janice Huang", 43200), "Thomas M. Siebel Center for Computer Science")
-def main(argv):
-	sendInvites(argv[0], argv[1], argv[2], argv[3])
 
-main(sys.argv[1:])
+sendInvites(sys.argv[1], sys.argv[2], predict(sys.argv[1], sys.argv[2], int(sys.argv[3])), sys.argv[4])

@@ -16,4 +16,4 @@ function sendInvites(userId, target, time, place) {
 	});
 
 }
-sendInvites("PySYUaC1daQ7lezQ9HhvfV5Xdv73", "Audrey", 43200, "Thomas M. Siebel Center for Computer Science")
+sendInvites("0mAwO57HKoNB1DP8S1CNwtvEOMr1", "Ian Renfro", 43200, "Thomas M. Siebel Center for Computer Science")
