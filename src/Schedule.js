@@ -1,5 +1,6 @@
 import React from 'react'
-var poop =  "Poop";
+import firebase from 'firebase'
+
 
 class ScheduleForm extends React.Component {
     constructor(props) {
@@ -47,7 +48,7 @@ class ScheduleForm extends React.Component {
     }
 
     callGetSeconds() {
-      this.handleChangethis,
+      this.makeFalse,
       this.getSeconds
     }
 
@@ -80,21 +81,21 @@ class ScheduleForm extends React.Component {
             <input className='input time in' maxLength="2" value={this.state.expected_time.minutes} onChange={this.handleChange}/>
             <div className='style-select'>
             <select>
-              <option className='in' value={this.state.arrival_time.isPm} onClick={this.makeFalse}>AM</option>
-              <option className='in' value={this.state.arrival_time.isPm}>PM</option>
+              <option className='in' value={this.state.arrival_time.isPm} onClick={this.callGetSeconds}>AM</option>
+              <option className='in' value={this.state.arrival_time.isPm} onClick={this.getSeconds}>PM</option>
             </select>
             </div>
             </div>
 
             <label><p>Actual Arrival Time</p></label>
             <div className='time-capsule'>
-            <input className='input time in' maxLength="2" value={this.state.arrival_time.hours} onChange={this.callGetSeconds}/>
+            <input className='input time in' maxLength="2" value={this.state.arrival_time.hours} onChange={this.handleChange}/>
             <p className='in'>&nbsp;:&nbsp;</p>
-            <input className='input time in' maxLength="2" value={this.state.arrival_time.minutes} onChange={this.callGetSeconds}/>
+            <input className='input time in' maxLength="2" value={this.state.arrival_time.minutes} onChange={this.handleChange}/>
             <div className='style-select'>
             <select>
-              <option className='in' value={this.state.arrival_time.isPm} onClick={this.makeFalse}>AM</option>
-              <option className='in' value={this.state.arrival_time.isPm}>PM</option>
+              <option className='in' value={this.state.arrival_time.isPm} onClick={this.callGetSeconds}>AM</option>
+              <option className='in' value={this.state.arrival_time.isPm} onClick={this.getSeconds}>PM</option>
             </select>
             </div>
             </div>

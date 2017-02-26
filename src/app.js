@@ -10,7 +10,8 @@ import NotFound from './NotFound'
 import About from './About'
 import Login from './Login'
 import Schedule from './Schedule'
-import SignIn from './SignIn'
+import SignUp from './SignUp'
+import Dashboard from './Dashboard'
 
 export default class App extends React.Component {
   constructor(props, context) {
@@ -51,7 +52,7 @@ export default class App extends React.Component {
     this.setState({authed: false});
     browserHistory.push('/login')
   }
-  
+
   render() {
     return (
       <div>

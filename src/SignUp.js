@@ -1,8 +1,9 @@
 import React from 'react'
+import firebase from 'firebase'
 
 import { login } from './Auth'
 
-class SignInForm extends React.Component {
+class SignUpForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,18 +33,19 @@ class SignInForm extends React.Component {
     render() {
         return (
         <div>
+          <h1>Sign Up with Tardy</h1>
           <div className='sign-in'>
           <form onSubmit={this.handleSubmit} >
-            <label>Full Name</label>
+            <label><p>Full Name</p></label>
             <input className='input' type="text" name="full_name" value={this.state.full_name} onChange={this.handleChange} />
 
-              <label>Email</label>
+              <label><p>Email</p></label>
               <input className='input' type="text" name="email" value={this.state.email} onChange={this.handleChange} />
               <br />
-              <label>Phone Number</label>
+              <label><p>Phone Number</p></label>
               <input className='input' maxLength='10' type="text" name="phone" value={this.state.phone} onChange={this.handleChange} />
               <br />
-              <label>Password</label>
+              <label><p>Password</p></label>
               <input className='input' type="password" name="password" value={this.state.password} onChange={this.handleChange} />
           <input className='submit btn' type="submit" value="Submit" />
           </form>
@@ -53,4 +55,4 @@ class SignInForm extends React.Component {
     }
 }
 
-export default SignInForm;
+export default SignUpForm;
