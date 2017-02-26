@@ -16,6 +16,7 @@ import Friend from './Friend'
 import Network from './Network'
 import MeetupDetails from './MeetupDetails'
 
+
 export default class App extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -31,7 +32,7 @@ export default class App extends React.Component {
           authed: true
         })
       }
-    })
+    });
   }
 
   componentWillUnmount () {

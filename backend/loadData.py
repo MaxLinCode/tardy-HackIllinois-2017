@@ -45,14 +45,6 @@ def predict(userId, target, expected):
     print(avg)
     return expected - avg
 
-def rawToTime(rawval):
-    intval = int(rawval)
-    seconds = intval % 60
-    intval = intval // 60
-    minutes = intval % 60
-    intval = intval // 60
-    hours = intval % 24
-    return ("%02d:%02d" % (hours, minutes))
 
 def roundFifteen(rawval):
     intval = int(rawval) // 60

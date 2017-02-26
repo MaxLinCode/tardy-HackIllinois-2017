@@ -34,6 +34,7 @@ class FriendForm extends React.Component {
         [name]: target.value
       })
       firebase.database().ref('users/' + firebase.auth().currentUser.uid + '/friends' + '/' + this.state.full_name).set({
+
         name: full_name,
         email: email,
         number: phone,
