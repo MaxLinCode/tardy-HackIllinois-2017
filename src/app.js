@@ -12,6 +12,8 @@ import Login from './Login'
 import Schedule from './Schedule'
 import SignUp from './SignUp'
 import Dashboard from './Dashboard'
+import Friend from './Friend'
+import Network from './Network'
 
 export default class App extends React.Component {
   constructor(props, context) {
@@ -61,6 +63,9 @@ export default class App extends React.Component {
             <Route path="/about" component={About} />
             <Route path="/login" component={Login} />
             <Route path="/schedule" component={Schedule} onEnter={this.requireAuth} />
+            <Route path="/dashboard" component={Dashboard} onEnter={this.requireAuth} />
+            <Route path="/friend" component={Friend} onEnter={this.requireAuth} />
+            <Route path="/network" component={Network} onEnter={this.requireAuth} />
           </Route>
           <Route path="*" component={NotFound}/>
         </Router>

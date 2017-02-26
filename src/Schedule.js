@@ -55,6 +55,7 @@ class ScheduleForm extends React.Component {
     handleChange(event) {
         const target = event.target;
         const name = target.name;
+
         var copy;
         if (name == 'expected_time_hours') {
           copy = this.state.expected_time;
@@ -105,6 +106,7 @@ class ScheduleForm extends React.Component {
         alert('User: ' + this.state.full_name + '\nExpected Time: ' + this.state.expected_time.hours + ' ' + this.state.expected_time.minutes+ ' ' + this.state.expected_time.isPm + '\nArrival Time: ' + this.state.arrival_time.hours + ' ' + this.state.arrival_time.minutes + ' ' + this.state.expected_time.isPm);
         event.preventDefault();
     }
+
 
     render() {
         return (
