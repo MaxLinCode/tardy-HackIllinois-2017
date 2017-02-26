@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from 'firebase'
-//import {sendInvites} from '../backend/messenger.js'
+import {sendInvites} from '../backend/messenger.js'
 import { browserHistory } from 'react-router'
 import {Predict, rawToTime} from './PredictTime'
 import {getEntry} from './loadData'
@@ -32,6 +32,7 @@ class ScheduleForm extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleEvent = this.handleEvent.bind(this);
     }
     getSeconds(event) {
       var total;
@@ -98,10 +99,6 @@ class ScheduleForm extends React.Component {
               [name]: target.value
           });
       }
-    }
-
-    dispSchedule(timeToSchedule) {
-
     }
 
     handleSubmit(event) {

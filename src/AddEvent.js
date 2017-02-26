@@ -123,7 +123,7 @@ class AddEvent extends React.Component {
         return (
         <div>
         <div className='sign-in'>
-        <h1>Schedule</h1>
+        <h1>Event</h1>
         <form onSubmit={this.handleSubmit} >
             <label><p>Full Name</p></label>
             <input className='input' type="text" name="full_name" value={this.state.full_name} onChange={this.handleChange} />
