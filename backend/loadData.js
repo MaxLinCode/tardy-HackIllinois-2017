@@ -13,3 +13,7 @@ function addEntry(userId, target, expected, actual) {
 	db.ref().child('users/' + userId).child(target).push([expected, actual]);
 	console.log("nooooooooooooooooooo");
 }
+
+function getEntry(userId, target) {
+	return db.ref().child('users/' + userId).child(target).get().val()
+}
