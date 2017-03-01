@@ -1,3 +1,5 @@
+![alt text][logo]
+[logp]: https://ibb.co/bQWjQa
 # tardy
 
 Web App to stop your friends from being late to meetups all the time!
