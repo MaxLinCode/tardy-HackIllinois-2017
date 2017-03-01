@@ -1,5 +1,5 @@
-![alt text][logo]
-[logp]: https://ibb.co/bQWjQa
+![alt text](https://image.ibb.co/fdQprF/Screen_Shot_2017_02_26_at_9_57_42_AM.png "Tardy Logo")
+
 # tardy
 
 Web App to stop your friends from being late to meetups all the time!
