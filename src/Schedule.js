@@ -1,6 +1,6 @@
 import React from 'react'
 import firebase from 'firebase'
-import {sendInvites} from '../backend/messenger.js'
+//import {sendInvites} from './messenger.js'
 import { browserHistory } from 'react-router'
 import {Predict, rawToTime} from './PredictTime'
 import {getEntry} from './loadData'

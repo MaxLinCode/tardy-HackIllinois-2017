@@ -1,5 +1,5 @@
 export function sendInvites(userId, target, time, place) {
-	var PythonShell = require('python-shell');
+	//var PythonShell = require('python-shell');
 	
 	var options = {
 	  mode: 'text',
